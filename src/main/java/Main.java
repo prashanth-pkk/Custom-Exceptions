@@ -1,8 +1,11 @@
+import model.BankAccount;
+import service.BankAccountManager;
+
 public class Main {
     public static void main(String[] args) {
 
-        BankAccount bankAccount = new BankAccount("Nidhi", "12345", 500.0);
-        BankAccount transferAccount = new BankAccount("Vani", "12345", 0.0);
+       /* model.BankAccount bankAccount = new model.BankAccount("Nidhi", "12345", 500.0);
+        model.BankAccount transferAccount = new model.BankAccount("Vani", "12345", 0.0);
 
         //To verify the name and account number
         String verifyName = "Nidhi";
@@ -17,14 +20,14 @@ public class Main {
         //Withdraw amount
         try {
             bankAccount.withDraw(15000);
-        } catch (InsufficientFundsException e) {
+        } catch (exceptions.InsufficientFundsException e) {
             System.out.println("Error : " + e.getMessage());
         }
 
         //Deposit zero amount
         try {
             bankAccount.deposit(0);
-        } catch (ZeroDepositException e) {
+        } catch (exceptions.ZeroDepositException e) {
             System.out.println("Error : " + e.getMessage());
         }
 
@@ -32,7 +35,7 @@ public class Main {
         try {
             bankAccount.deposit(1000);
             System.out.println("Deposit successful. The balance : " + bankAccount.getBalance());
-        } catch (ZeroDepositException e) {
+        } catch (exceptions.ZeroDepositException e) {
             System.out.println("Error : " + e.getMessage());
         }
 
@@ -42,7 +45,7 @@ public class Main {
             System.out.println("Transfer successful");
             System.out.println("Account 1 get balance : " + bankAccount.getBalance());
             System.out.println("Account 2 get balance : " + transferAccount.getBalance());
-        } catch (InsufficientFundsException | ZeroDepositException e) {
+        } catch (exceptions.InsufficientFundsException | exceptions.ZeroDepositException e) {
             System.out.println("Error : " + e.getMessage());
         }
 
@@ -53,8 +56,11 @@ public class Main {
             System.out.println("Transfer successful");
             System.out.println("Account 1 get balance : " + bankAccount.getBalance());
             System.out.println("Account 2 get balance : " + bankAccount.getBalance());
-        } catch (IllegalArgumentException | InsufficientFundsException | ZeroDepositException exception) {
+        } catch (IllegalArgumentException | exceptions.InsufficientFundsException | exceptions.ZeroDepositException exception) {
             System.out.println("Error : " + exception.getMessage());
-        }
+        }*/
+        BankAccountManager bankAccountManager = new BankAccountManager();
+        BankAccount account = bankAccountManager.createBankAccount();
+        bankAccountManager.manageAccount(account);
     }
 }

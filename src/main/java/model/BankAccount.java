@@ -1,8 +1,23 @@
+package model;
+
+import exceptions.InsufficientFundsException;
+import exceptions.ZeroDepositException;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class BankAccount {
+
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String accountNumber;
     private double balance;
     private boolean active;
+    private AccountType accountType;
 
     public String getName() {
         return name;
@@ -32,11 +47,12 @@ public class BankAccount {
         this.active = active;
     }
 
-    public BankAccount(String name, String accountNumber, double balance) {
-        this.name = name;
-        this.accountNumber = accountNumber;
-        this.balance = balance;
-        this.active = true;
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
     }
 
     public void withDraw(double amount) throws InsufficientFundsException {
@@ -64,7 +80,7 @@ public class BankAccount {
             throw new InsufficientFundsException("The recipient account can't be zero");
         }
         if(recipient.isActive()){
-            throw  new IllegalArgumentException("Recipient account is not active");
+            throw new IllegalArgumentException("Recipient account is not active");
         }
         if(amount <= 0){
             throw  new ZeroDepositException("The transfer amount more than zero");
