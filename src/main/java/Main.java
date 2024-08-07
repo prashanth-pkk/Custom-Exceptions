@@ -1,6 +1,3 @@
-import model.BankAccount;
-import service.BankAccountManager;
-
 public class Main {
     public static void main(String[] args) {
 
